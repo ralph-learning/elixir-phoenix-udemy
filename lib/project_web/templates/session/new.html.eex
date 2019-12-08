@@ -1,6 +1,6 @@
 <h2>Login</h2>
 
-<%= form_for: @conn, session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
+<%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
   <div class="form-group">
     <%= f.text_input f, :email, palceholder: "Email"  %>
   </div>
@@ -14,6 +14,6 @@
   </div>
 <% end %>
 
-<%= form_for: @conn, session_path(@conn, :delete), [method: :delete, as: :user], fn f -> %>
+<%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn f -> %>
 
 <% end %>

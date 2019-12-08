@@ -1,5 +1,5 @@
-defmodule Project.SessionController do
-  use Project, :controller
+defmodule ProjectWeb.SessionController do
+  use ProjectWeb, :controller
 
   alias Project.Accounts
 
@@ -19,13 +19,13 @@ defmodule Project.SessionController do
       {:error, :unauthorized} ->
         conn
         |> put_flash(:error, "Bad email/password")
-        |> reidrected(to: session_path(conn, :new))
+        |> redirect(to: Routes.session_path(conn, :new))
     end
   end
 
   def delete(conn, _) do
     conn
     |> configure_session(drop: true)
-    |> redirect(to: '/')
+    |> Routes.redirect(to: '/')
   end
 end

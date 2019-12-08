@@ -35,7 +35,8 @@ defmodule ProjectWeb.Router do
         |> Phoenix.Controller.redirect(to: "/")
         |> halt()
 
-      {user_id}
+      user_id ->
+        assign(conn, :current_user, Project.Accounts.get_user!(user_id))
     end
   end
 end
