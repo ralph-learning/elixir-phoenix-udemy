@@ -22,12 +22,18 @@ defmodule ProjectWeb.Router do
       singleton: true
   end
 
+  scope "/cms", ProjectWeb.CMS, as: :cms do
+    pipe_through [:browser, :authenticate_user]
+
+    resources "/pages", PageController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ProjectWeb do
   #   pipe_through :api
   # end
 
-  defp authenticate_user(conn) do
+  defp authenticate_user(conn, _) do
     case get_session(conn, :user_id) do
       nil ->
         conn
