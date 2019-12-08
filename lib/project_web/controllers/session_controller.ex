@@ -22,4 +22,10 @@ defmodule Project.SessionController do
         |> reidrected(to: session_path(conn, :new))
     end
   end
+
+  def delete(conn, _) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: '/')
+  end
 end

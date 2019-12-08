@@ -26,4 +26,16 @@ defmodule ProjectWeb.Router do
   # scope "/api", ProjectWeb do
   #   pipe_through :api
   # end
+
+  defp authenticate_user(conn) do
+    case get_session(conn, :user_id) do
+      nil ->
+        conn
+        |> Phoenix.Controller.put_flash(:error, "Login Requried")
+        |> Phoenix.Controller.redirect(to: "/")
+        |> halt()
+
+      {user_id}
+    end
+  end
 end
