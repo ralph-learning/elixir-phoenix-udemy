@@ -218,8 +218,8 @@ defmodule Project.CMS do
     |> handle_existing_author()
   end
 
-  def handle_existing_author({:ok, author}) :do author
+  def handle_existing_author({:ok, author}), do: author
   def handle_existing_author({:error, changeset}) do
-    Repo.getBy!(Author, user_id: changeset.data.user_id)
+    Repo.get_by(Author, user_id: changeset.data.user_id)
   end
 end
